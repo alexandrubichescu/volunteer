@@ -1,5 +1,4 @@
 # Ignore everything in the root directory except the .gitignore file itself
-/*
 !.gitignore
 
 # Ignore build outputs
