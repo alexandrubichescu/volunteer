@@ -1,0 +1,26 @@
+<div class="container mt-3">
+  <h2 class="mb-4">Find out Volunteer categories</h2>
+  <!-- Categories List -->
+  <div class="row row-cols-1 row-cols-md-3 g-1" *ngIf="categories.length">
+    <div class="col" *ngFor="let category of categories">
+      <div class="card h-100 shadow-sm">
+        <img [src]="category.imageUrl" class="card-img-top" alt="Category Image">
+        <div class="card-body">
+          <h5 class="card-title text-primary"> <b>{{ category.title }}</b></h5>
+          <p class="card-text">
+            {{ category.description }}
+          </p>
+          <ng-container *ngIf="isLoggedIn">
+            <button class="btn btn-success w-100" [routerLink]="['/categorieswithallevents', category.categoryId]">
+              See all events in <b>{{ category.title }}</b>
+            </button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    
+  

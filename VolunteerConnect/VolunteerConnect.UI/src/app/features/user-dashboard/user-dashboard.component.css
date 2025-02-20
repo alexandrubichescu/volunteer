@@ -1,0 +1,31 @@
+.card {
+    color: #131212;
+    text-align: center;
+  }
+  
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .container h3 {
+    font-weight: bold;
+    color: #0d248d; /* Primary Blue */
+  }
+  /* Custom background color for Pending */
+.bg-warning {
+  background-color: #f1e6b8 !important; /* Light yellow */
+  /*color: #856404; /* Darker text for contrast */
+}
+
+/* Custom background color for Approved */
+.bg-success {
+  background-color: #bfe6c1 !important; /* Light green */
+ /* color: #1b5e20; /* Darker green text for contrast */
+}
+
+/* Custom background color for Declined */
+.bg-danger {
+  background-color: #f7d4dd !important; /* Light red */
+  /*color: #721c24;  Darker red text for contrast */
+}

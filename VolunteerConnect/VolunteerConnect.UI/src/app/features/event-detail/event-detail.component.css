@@ -1,0 +1,19 @@
+.container {
+    max-width: 1000px;
+    margin: auto;
+  }
+  
+  .card {
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-title {
+    color: #0d248d;
+  }
+  
+  .btn {
+    border: 0.5px solid #0d248d;
+    margin: 20px;
+  }
+  

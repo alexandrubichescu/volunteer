@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <!-- Welcome Section -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h2>Welcome, {{ userName }}</h2>
+      <p>Your role: <strong>{{ userRole }}</strong></p>
+      <p>Total Participations: <strong>{{ participationsOrdersList.length }}</strong></p>
+    </div>
+  </div>
+
+  <!-- Participations Section -->
+  <div class="mb-4">
+    <h3>Your Participations:</h3>
+    <div *ngIf="participationsOrdersList.length; else noParticipations" class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col" *ngFor="let participation of participationsOrdersList">
+        <!-- Card for participation -->
+        <div class="card h-100 shadow-sm" [ngClass]="{
+            'bg-warning': participation.status === 0,  
+            'bg-success': participation.status === 1,  
+            'bg-danger': participation.status === 2 
+          }">
+          <div class="card-body">
+            <h5 class="card-title">{{ participation.event }}</h5>
+            <p class="card-text">
+              Status: <strong>{{ getStatusLabel(participation.status) }}</strong><br>
+              Date: {{ participation.eventDate | date: 'longDate' }}<br>
+              Category: {{ participation.categoryTitle }}
+            </p>
+            <!-- Cancel Order Button -->
+            <button *ngIf="participation.status === 0" class="btn btn-danger"
+              (click)="deleteParticipationOrder(participation.id)">
+              Cancel My Order
+            </button>
+            <button *ngIf="participation.status === 2" class="btn btn-danger"
+              (click)="deleteParticipationOrder(participation.id)">
+              Delete old order
+            </button>
+            <button
+            *ngIf="participation.status === 1"
+            class="btn btn-primary"
+            (click)="navigateToEventDetail(participation.eventId)"
+          >
+            View Event Details
+          </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noParticipations>
+      <p class="text-muted">You have no participations yet.</p>
+    </ng-template>
+  </div>
+</div>
