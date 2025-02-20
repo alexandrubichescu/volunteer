@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<BaseOutputPath>..\..\Binaries\API\bin</BaseOutputPath>
+		<BaseIntermediateOutputPath>..\..\Binaries\API\obj</BaseIntermediateOutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="logs\**" />
+	  <Compile Remove="obj\**" />
+	  <Content Remove="logs\**" />
+	  <Content Remove="obj\**" />
+	  <EmbeddedResource Remove="logs\**" />
+	  <EmbeddedResource Remove="obj\**" />
+	  <None Remove="logs\**" />
+	  <None Remove="obj\**" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\VolunteerConnect.Application\VolunteerConnect.Application.csproj" />
+		<ProjectReference Include="..\VolunteerConnect.Identity\VolunteerConnect.Identity.csproj" />
+		<ProjectReference Include="..\VolunteerConnect.Infrastructure\VolunteerConnect.Infrastructure.csproj" />
+		<ProjectReference Include="..\VolunteerConnect.Persistance\VolunteerConnect.Persistance.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="MediatR" Version="12.4.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.2.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+		<PackageReference Include="Serilog" Version="4.2.0" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="9.0.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0" />
+
+	</ItemGroup>
+
+</Project>

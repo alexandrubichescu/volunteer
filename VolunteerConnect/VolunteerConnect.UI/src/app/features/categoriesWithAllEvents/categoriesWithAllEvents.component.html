@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Events for "{{ categoryTitle }}"</h2>
+    <button class="btn btn-secondary" (click)="goBack()">Go Back</button>
+  </div>
+  <div *ngIf="categoryEventsList.length; else noEvents" class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let event of categoryEventsList">
+      <div class="card h-100 shadow-sm">
+        <img [src]="event.imageUrl || '../../assets/education_event.jpg'" class="card-img-top" alt="Event Image">
+        <div class="card-body">
+          <h5 class="card-title text-primary">{{ event.title }}</h5>
+          <p class="card-text">
+            Hosted by: <b>{{ event.companyHolder }}</b><br>
+            Date: {{ event.date | date: 'longDate' }}<br>
+          </p>
+          <button class="btn btn-success w-100" [routerLink]="['/detailedevent', event.eventId]">See Event
+            Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Events Message -->
+  <ng-template #noEvents>
+    <p class="text-muted">No events found for this category.</p>
+  </ng-template>
+</div>

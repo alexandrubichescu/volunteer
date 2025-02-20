@@ -1,0 +1,129 @@
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Admin Dashboard</h2>
+
+    <!-- Add Event & Add Category -->
+    <div class="mb-4 text-end">
+        <button class="btn btn-primary me-2" (click)="addEvent()">Add New Event</button>
+        <button class="btn btn-primary" (click)="showAddCategoryModal()">Add New Category</button>
+    </div>
+
+    <!-- Events List -->
+    <div>
+        <h3>All Events</h3>
+        <ul class="list-group mb-5">
+            <li *ngFor="let event of eventsList"
+                class="list-group-item d-flex align-items-center justify-content-between">
+                <div>
+                    <img [src]="event.imageUrl || '../../assets/default-event.jpg'" class="img-thumbnail me-3"
+                        alt="Event Image" style="width: 180px; height: 100px;">
+                    <span><b>{{ event.title }}</b> hosted by {{ event.companyHolder }}</span>
+                </div>
+                <div>
+                    <button class="btn btn-warning me-2" (click)="updateEvent(event.eventId)">Update</button>
+                    <button class="btn btn-danger" (click)="deleteEvent(event.eventId)">Delete</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- My Participation Orders -->
+    <div>
+        <h3>My Participation Orders</h3>
+        <ul class="list-group">
+            <li *ngFor="let order of participationsOrdersList" class="list-group-item d-flex justify-content-between align-items-center"[ngClass]="{
+                'bg-warning': order.status === 0,  
+                'bg-success': order.status === 1,  
+                'bg-danger': order.status === 2 
+              }">
+                <div>
+                    <b>User:</b> {{ order.user.firstName }} {{ order.user.lastName }} |
+                    <b>Category:</b> {{ order.categoryTitle }} |
+                    <b>Event:</b> {{ order.event }} |
+                    <b>Status:</b> {{ getStatusLabel(order.status) }}
+                </div>
+                <div>
+                    <button
+                        class="btn btn-success me-2"
+                        *ngIf="order.status === 0"
+                        (click)="updateParticipationStatus(order.id,order.user.id, order.eventId, 1)"
+                    >
+                        Approve
+                    </button>
+                    <button
+                        class="btn btn-warning me-2"
+                        *ngIf="order.status === 0"
+                        (click)="updateParticipationStatus(order.id,order.user.id, order.eventId, 2)"
+                    >
+                        Decline
+                    </button>
+                    <button class="btn btn-danger" (click)="deleteParticipationOrder(order.id)">Delete</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <p></p>
+
+
+
+    <!-- Participation Orders -->
+    <div>
+        <h3>ALL Participation Orders</h3>
+        <ul class="list-group">
+            <li *ngFor="let order of allParticipationsOrdersList" class="list-group-item d-flex justify-content-between align-items-center " [ngClass]="{
+                'bg-warning': order.status === 0,  
+                'bg-success': order.status === 1,  
+                'bg-danger': order.status === 2 
+              }">
+                <div>
+                    <b>User:</b> {{ order.user.firstName }} {{ order.user.lastName }}|
+                    <b>Category:</b> {{ order.categoryTitle }} |
+                    <b>Event:</b> {{ order.event }} |
+                    <b>Status:</b> {{ getStatusLabel(order.status) }}
+                </div>
+                <div>
+                    <button
+                        class="btn btn-success me-2"
+                        *ngIf="order.status === 0"
+                        (click)="updateParticipationStatus(order.id,order.user.id, order.eventId, 1)"
+                    >
+                        Approve
+                    </button>
+                    <button
+                        class="btn btn-warning me-2"
+                        *ngIf="order.status === 0"
+                        (click)="updateParticipationStatus(order.id,order.user.id, order.eventId,2)"
+                    >
+                        Decline
+                    </button>
+                    <button class="btn btn-danger" (click)="deleteParticipationOrder(order.id)">Delete</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+</div>
+
+
+<!-- Add New Category Modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{ show: isAddCategoryModalVisible }" style="display: block;"
+    *ngIf="isAddCategoryModalVisible">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add a New Category</h5>
+                <button type="button" class="btn-close" (click)="closeAddCategoryModal()"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" [(ngModel)]="newCategoryTitle" class="form-control mb-2"
+                    placeholder="Category Title">
+                <textarea [(ngModel)]="newDescription" class="form-control mb-2"
+                    placeholder="Category Description"></textarea>
+                <input type="text" [(ngModel)]="newImageUrl" class="form-control mb-2" placeholder="Image URL">
+                <div *ngIf="errorMessage" class="alert alert-danger mt-2">{{ errorMessage }}</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeAddCategoryModal()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="addNewCategory()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>

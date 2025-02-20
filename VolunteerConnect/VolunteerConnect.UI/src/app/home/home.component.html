@@ -1,0 +1,16 @@
+<div class="container my-5">
+  <header class="text-center mb-4">
+    <h1 class="display-4 text-success">Welcome to Volunteer Connect</h1>
+    <p class="fs-5 text-muted">
+      Discover impactful volunteering opportunities in your community. Join us today to make a difference!
+    </p>
+  </header>
+
+
+    <app-categories></app-categories>
+
+  <!-- No Categories Message -->
+  <div *ngIf="categories.length === 0" class="text-center mt-5">
+    <p class="text-muted">No categories found. Check back later!</p>
+  </div>
+</div>

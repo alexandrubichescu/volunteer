@@ -1,0 +1,64 @@
+
+    /* Container Styles */
+.container {
+  max-width: 1000px;
+  font-family: 'Arial', sans-serif;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  font-size: 2rem;
+  color: #0d248d; /* Primary Blue */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px; /* Adjusted margin */
+}
+
+.card {
+  height: 350px; /* Set a fixed height for all cards */
+  display: flex;
+  background-color: #f7f8ee;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #131212; 
+}
+
+.card-img-top {
+  height: 250px; /* Set a fixed height for all images */
+  object-fit: cover; /* Ensure images maintain aspect ratio */
+}
+
+.card-body {
+  flex-grow: 1; /* Allow content to stretch to fill available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center; /* Center-align the content */
+}
+
+.card-title {
+  font-size: 1.2rem; /* Adjust title size */
+}
+
+.card-text {
+  font-size: 0.9rem; /* Adjust text size */
+  margin-bottom: 10px; /* Add spacing between text and button */
+}
+
+.btn {
+  background-color: #db9a0e; /* Darker orange */
+  color: #fff; /* White text */
+  border: none; /* Remove border */
+  padding: 5px 10px; /* Add padding */
+  cursor: pointer; /* Add pointer cursor */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+.btn:hover {
+  background-color: #573d09; /* Darker orange on hover */
+}
+
+

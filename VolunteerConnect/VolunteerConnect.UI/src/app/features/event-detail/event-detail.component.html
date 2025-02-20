@@ -1,0 +1,32 @@
+<div class="container mt-4">
+    <div *ngIf="eventDetail; else loading">
+      <div class="card">
+        <img [src]="eventDetail.imageUrl || '../../assets/default-event.jpg'" class="card-img-top" alt="Event Image">
+        <div class="card-body">
+          <h2 class="card-title text-primary">{{ eventDetail.title }}</h2>
+          <p class="card-text">
+            <b>Hosted by:</b> {{ eventDetail.companyHolder }}<br>
+            <b>Location:</b> {{ eventDetail.location }}<br>
+            <b>Date:</b> {{ eventDetail.date | date: 'longDate' }}<br>
+            <b>Max Participants:</b> {{ eventDetail.maxParticipants }}
+          </p>
+          <p class="card-text">
+            <b>Description:</b><br>
+            {{ eventDetail.description }}
+          </p>
+          <!-- Conditional button or info message -->
+        <div *ngIf="alreadyParticipating; else participateButton">
+          <p class="text-success">You are already participating in this event.</p>
+        </div>
+        <ng-template #participateButton>
+          <button class="btn btn-success" (click)="participateOnEvent()">Participate Now</button>
+        </ng-template>
+          <button class="btn btn-secondary" (click)="goBack()">Go Back</button>
+        </div>
+      </div>
+    </div>
+    <ng-template #loading>
+      <p class="text-muted text-center">Loading event details...</p>
+    </ng-template>
+  </div>
+  
